@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /tags/{tag} {
+    	allow read, write: if isSignedIn() && isScientist();
+    }
+  
+    match /tweets/{tweet} {
+    	allow read, delete: if isSignedIn();
+    	allow write: if isAdmin();
+    }
+  	
+    match /faqs/{faq} {
+      allow read, create: if isSignedIn();
+      
+      allow update, delete: if isSignedIn() &&
+      ((request.auth.token.email == resource.data.creator.email) &&
+      !resource.data.approved ||
+      isScientist());
+    }
+    
+    match /volunteers/{volunteer} {
+    	allow read: if isSignedIn() &&
+      (request.auth.token.email == resource.data.email ||
+      isAdmin());
+    	
+      allow write: if isSignedIn() && isAdmin();
+    }
+  }
+}
+
+function isSignedIn() {
+	return request.auth != null;
+}
+
+function isAdmin() {
+	return request.auth.token.admin == true;
+}
+
+function isScientist() {
+	return request.auth.token.scientist == true;
+}
