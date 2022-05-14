@@ -56,7 +56,7 @@ const actions = {
           timestamp: new Date(),
         },
         lastModifiedAt: new Date(),
-        approved: store.state.role === 'מדען',
+        approved: store.state.role !== 'מתנדב',
         docID: faqDocRef.id,
       };
       faqDocRef.set({ ...payload, ...otherFields });
@@ -75,7 +75,7 @@ const actions = {
         payload.creator.email === store.state.user.email
       ) {
         faqDocRef.update({ ...payload, lastModifiedAt });
-      } else if (store.state.role === 'מדען') {
+      } else if (store.state.role !== 'מתנדב') {
         if (!payload.approved) {
           payload.approved = true;
           const approver = {

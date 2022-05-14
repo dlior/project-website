@@ -1,46 +1,40 @@
 <template>
-  <div class="bg-gray-100 py-4 px-3 rounded-lg m-4" dir="rtl">
+  <div class="px-3 py-4 m-4 bg-gray-100 rounded-lg" dir="rtl">
     <!-- clipboard copy button -->
     <div class="flex justify-start">
-      <button class="mb-2 focus:outline-none pl-2" @click="copyAnswer">
-        <ClipboardCopyIcon class="h-5 w-5 text-gray-600 hover:text-blue-500" />
+      <button class="pl-2 mb-2 focus:outline-none" @click="copyAnswer">
+        <ClipboardCopyIcon class="w-5 h-5 text-gray-600 hover:text-blue-500" />
       </button>
 
       <!-- edit and delete buttons -->
       <div
         v-show="
           (faq.creator.email === $store.state.user.email && !faq.approved) ||
-          $store.state.role === 'מדען'
+          $store.state.role != 'מתנדב'
         "
         class="flex"
       >
         <router-link
           :to="{ name: 'EditFaq', params: { id: faq.docID } }"
-          class="mb-2 focus:outline-none pl-2"
+          class="pl-2 mb-2 focus:outline-none"
         >
-          <PencilAltIcon class="h-5 w-5 text-gray-600 hover:text-green-600" />
+          <PencilAltIcon class="w-5 h-5 text-gray-600 hover:text-green-600" />
         </router-link>
         <Modal :document="'faq'" @deleteFaqDoc="deleteFaq">
-          <TrashIcon class="h-5 w-5 text-gray-600 hover:text-black" />
+          <TrashIcon class="w-5 h-5 text-gray-600 hover:text-black" />
         </Modal>
       </div>
     </div>
     <div
       v-show="clicked"
-      class="bg-gray-800 text-white text-center rounded -mt-1 w-12"
+      class="w-12 -mt-1 text-center text-white bg-gray-800 rounded"
     >
       הועתק!
     </div>
 
     <!-- question -->
     <h1
-      class="
-        font-bold
-        text-green-900
-        mb-2
-        overflow-ellipsis overflow-hidden
-        text-lg
-      "
+      class="mb-2 overflow-hidden text-lg font-bold text-green-900  overflow-ellipsis"
     >
       {{ faq.q }}
     </h1>
@@ -51,23 +45,10 @@
     </article>
 
     <!-- additional information panel -->
-    <div class="bg-white rounded-2xl mt-4 text-gray-800">
+    <div class="mt-4 text-gray-800 bg-white rounded-2xl">
       <Disclosure v-slot="{ open }">
         <DisclosureButton
-          class="
-            flex
-            justify-between
-            w-full
-            px-4
-            py-2
-            text-sm
-            font-semibold
-            text-left
-            bg-gray-200
-            rounded-lg
-            hover:bg-gray-300
-            focus:outline-none
-          "
+          class="flex justify-between w-full px-4 py-2 text-sm font-semibold text-left bg-gray-200 rounded-lg  hover:bg-gray-300 focus:outline-none"
         >
           <span>פרטים נוספים</span>
           <ChevronUpIcon
@@ -78,7 +59,7 @@
         <DisclosurePanel class="px-4 pt-4 pb-2 text-xs font-medium">
           <!-- tags -->
           <div class="text-indigo-800">
-            <span class="font-semibold ml-1">תגיות:</span>
+            <span class="ml-1 font-semibold">תגיות:</span>
             <ul
               v-for="(tag, index) in faq.tags"
               :key="index"
@@ -93,7 +74,7 @@
           <!-- creator -->
           <div class="text-blue-600">
             <span>תשובה נכתבה ע״י</span>
-            <span class="font-semibold mx-1">{{ faq.creator.name }}</span>
+            <span class="mx-1 font-semibold">{{ faq.creator.name }}</span>
             <span
               >בתאריך
               {{
@@ -108,14 +89,14 @@
           </div>
 
           <!-- pending approval -->
-          <div v-show="!faq.approved" class="text-red-500 font-semibold">
+          <div v-show="!faq.approved" class="font-semibold text-red-500">
             <span>תשובה ממתינה לאישור</span>
           </div>
 
           <!-- link -->
           <div>
             <p v-if="faq.link.length && !faq.approved">
-              <a :href="faq.link" target="_blank" class="font-semibold ml-1"
+              <a :href="faq.link" target="_blank" class="ml-1 font-semibold"
                 >קישור</a
               >
             </p>

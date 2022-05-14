@@ -4,31 +4,10 @@
   <div class="flex flex-col sm:px-28 md:px-30 lg:px-60" dir="rtl">
     <div class="flex-shrink-0">
       <button
-        class="
-          relative
-          inline-flex
-          items-center
-          px-4
-          py-2
-          mb-4
-          mr-4
-          border border-transparent
-          shadow-sm
-          text-sm
-          font-medium
-          rounded-md
-          text-white
-          bg-indigo-500
-          hover:bg-indigo-600
-          focus:outline-none
-          focus:ring-2
-          focus:ring-offset-2
-          focus:ring-offset-gray-800
-          focus:ring-indigo-500
-        "
+        class="relative inline-flex items-center px-4 py-2 mb-4 mr-4 text-sm font-medium text-white bg-indigo-500 border border-transparent rounded-md shadow-sm  hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500"
         @click="add = !add"
       >
-        <PlusIcon class="ml-2 h-5 w-5" aria-hidden="true" />
+        <PlusIcon class="w-5 h-5 ml-2" aria-hidden="true" />
         <span class="ml-2">הוסף מילות חיפוש</span>
       </button>
     </div>
@@ -42,17 +21,7 @@
     </div>
   </div>
   <div
-    class="
-      grid grid-cols-2
-      gap-6
-      sm:grid-cols-4
-      md:grid-cols-6
-      lg:grid-cols-10
-      sm:px-28
-      md:px-30
-      lg:px-60
-      mx-4
-    "
+    class="grid grid-cols-2 gap-6 mx-4  sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-10 sm:px-28 md:px-30 lg:px-60"
     dir="rtl"
   >
     <div v-for="(searchWord, index) in searchWords" :key="index">
@@ -64,14 +33,7 @@
               id="search-word"
               name="search-word"
               type="checkbox"
-              class="
-                focus:ring-indigo-500
-                h-4
-                w-4
-                text-indigo-600
-                border-gray-300
-                rounded
-              "
+              class="w-4 h-4 text-indigo-600 border-gray-300 rounded  focus:ring-indigo-500"
               :value="searchWord.status"
               v-model="searchWord.status"
               :checked="searchWord.status"
@@ -80,11 +42,7 @@
           <div class="mr-2 text-sm">
             <label
               for="search-word"
-              class="
-                font-medium
-                text-gray-700
-                overflow-ellipsis overflow-hidden
-              "
+              class="overflow-hidden font-medium text-gray-700  overflow-ellipsis"
               >{{ searchWord.tag }}</label
             >
           </div>
@@ -92,14 +50,14 @@
       </fieldset>
     </div>
   </div>
-  <div class="flex mt-20 justify-center space-x-6">
+  <div class="flex justify-center mt-20 space-x-6">
     <button
-      class="px-4 py-2 rounded border bg-indigo-600 text-white shadow-lg"
+      class="px-4 py-2 text-white bg-indigo-600 border rounded shadow-lg"
       @click="save"
     >
       שמור
     </button>
-    <button class="px-4 py-2 rounded border" @click="$router.go(-1)">
+    <button class="px-4 py-2 border rounded" @click="$router.go(-1)">
       חזור
     </button>
   </div>

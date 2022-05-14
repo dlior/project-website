@@ -169,7 +169,7 @@ function ifAdmin(to, from, next) {
 function ifScientist(to, from, next) {
   document.title = `${to.meta.title}`;
   if (store.getters.getUserAuthStatus) {
-    if (store.getters.getUserRole !== 'מדען')
+    if (store.getters.getUserRole == 'מתנדב')
       return next({ name: 'Unauthorized' });
     else return next();
   } else return next({ name: 'Login' });

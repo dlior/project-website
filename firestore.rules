@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     match /tags/{tag} {
-    	allow read, write: if isSignedIn() && isScientist();
+    	allow read, write: if isSignedIn() && (isScientist() || isAdmin());
     }
   
     match /tweets/{tweet} {
@@ -14,10 +14,10 @@ service cloud.firestore {
     match /faqs/{faq} {
       allow read, create: if isSignedIn();
       
-      allow update, delete: if isSignedIn() &&
+      allow update, delete: if (isAdmin() || isSignedIn()) &&
       ((request.auth.token.email == resource.data.creator.email) &&
       !resource.data.approved ||
-      isScientist());
+      isScientist() || isAdmin);
     }
     
     match /volunteers/{volunteer} {

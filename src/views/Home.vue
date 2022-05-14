@@ -3,17 +3,11 @@
 
   <div
     id="dashboard"
-    class="flex flex-col m-4 px-3 sm:px-28 md:px-30 lg:px-60"
+    class="flex flex-col px-3 m-4 sm:px-28 md:px-30 lg:px-60"
     dir="rtl"
   ></div>
   <div
-    class="
-      flex flex-col
-      justify-center
-      items-center
-      text-xl text-gray-700
-      font-bold
-    "
+    class="flex flex-col items-center justify-center text-xl font-bold text-gray-700 "
     dir="rtl"
   >
     <p>ברוכים הבאים לאתר הניהול.</p>
@@ -26,16 +20,16 @@
         <li>3. עריכה והוספת מילות חיפוש ב Twitter</li>
       </ul>
     </div>
-    <div class="flex justify-center items-center text-gray-800 text-lg mt-10">
+    <div class="flex items-center justify-center mt-10 text-lg text-gray-800">
       <img
         src="@/assets/icons/google-chrome-icon.svg"
-        class="w-5 h-5 ml-2 inline"
+        class="inline w-5 h-5 ml-2"
         alt="google-chrome"
       />
       <button class="focus:outline-none">
         <a :href="downloadLink" target="_blank">
           <span class="text-base">הורד את התוסף לדפדפן גוגל כרום </span>
-          <DownloadIcon class="mr-2 h-5 w-5 inline" aria-hidden="true" />
+          <DownloadIcon class="inline w-5 h-5 mr-2" aria-hidden="true" />
         </a>
       </button>
     </div>
