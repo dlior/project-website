@@ -24,7 +24,7 @@
       <div class="flex items-center justify-center mt-10 text-lg text-gray-800">
         <img
           src="@/assets/icons/google-chrome-icon.svg"
-          class="inline w-5 h-5 ml-2"
+          class="inline w-6 h-6 ml-2"
           alt="google-chrome"
         />
         <button class="focus:outline-none" disabled>
