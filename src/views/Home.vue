@@ -41,6 +41,9 @@
           see chrome extension project and files in github
         </p>
       </a>
+      <p class="block text-base text-center text-red-700">
+        !some of the features are disabled on purpose
+      </p>
     </div>
   </div>
 </template>
