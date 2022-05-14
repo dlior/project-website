@@ -20,18 +20,27 @@
         <li>3. עריכה והוספת מילות חיפוש ב Twitter</li>
       </ul>
     </div>
-    <div class="flex items-center justify-center mt-10 text-lg text-gray-800">
-      <img
-        src="@/assets/icons/google-chrome-icon.svg"
-        class="inline w-5 h-5 ml-2"
-        alt="google-chrome"
-      />
-      <button class="focus:outline-none">
-        <a :href="downloadLink" target="_blank">
-          <span class="text-base">הורד את התוסף לדפדפן גוגל כרום </span>
-          <DownloadIcon class="inline w-5 h-5 mr-2" aria-hidden="true" />
-        </a>
-      </button>
+    <div class="flex flex-col justify-center">
+      <div class="flex items-center justify-center mt-10 text-lg text-gray-800">
+        <img
+          src="@/assets/icons/google-chrome-icon.svg"
+          class="inline w-5 h-5 ml-2"
+          alt="google-chrome"
+        />
+        <button class="focus:outline-none" disabled>
+          <strike>
+            <a href="#">
+              <span class="text-base">הורד את התוסף לדפדפן גוגל כרום</span>
+              <DownloadIcon class="inline w-5 h-5 mr-2" aria-hidden="true" />
+            </a>
+          </strike>
+        </button>
+      </div>
+      <a :href="downloadLink" target="_blank">
+        <p class="block text-base text-center">
+          see chrome extension project and files in github
+        </p>
+      </a>
     </div>
   </div>
 </template>
@@ -58,7 +67,8 @@ export default {
     });
 
     return {
-      downloadLink: computed(() => store.getters.getDownloadLink),
+      // downloadLink: computed(() => store.getters.getDownloadLink),
+      downloadLink: 'https://github.com/dlior/project-extension',
     };
   },
 };
