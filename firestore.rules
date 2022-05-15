@@ -3,29 +3,27 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     match /tags/{tag} {
-    	allow read, write: if isSignedIn() && (isScientist() || isAdmin());
+    	allow read: if isSignedIn();
+    	allow write: if isSignedIn() && isScientist();
     }
   
     match /tweets/{tweet} {
-    	allow read, delete: if isSignedIn();
-    	allow write: if isAdmin();
+    	allow read: if isSignedIn();
+      allow delete: if isSignedIn() && isScientist();
     }
   	
     match /faqs/{faq} {
-      allow read, create: if isSignedIn();
-      
-      allow update, delete: if (isAdmin() || isSignedIn()) &&
+      allow read: if isSignedIn();      
+      allow create, update, delete: if isSignedIn() &&
       ((request.auth.token.email == resource.data.creator.email) &&
       !resource.data.approved ||
-      isScientist() || isAdmin);
+      isScientist());
     }
     
     match /volunteers/{volunteer} {
     	allow read: if isSignedIn() &&
       (request.auth.token.email == resource.data.email ||
       isAdmin());
-    	
-      allow write: if isSignedIn() && isAdmin();
     }
   }
 }
