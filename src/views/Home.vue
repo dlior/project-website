@@ -28,12 +28,12 @@
           alt="google-chrome"
         />
         <button class="focus:outline-none" disabled>
-          <strike>
+          <del>
             <a href="#">
               <span class="text-base">הורד את התוסף לדפדפן גוגל כרום</span>
               <DownloadIcon class="inline w-5 h-5 mr-2" aria-hidden="true" />
             </a>
-          </strike>
+          </del>
         </button>
       </div>
       <a :href="downloadLink" target="_blank">
